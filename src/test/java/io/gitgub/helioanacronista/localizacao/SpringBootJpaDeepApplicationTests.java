@@ -1,4 +1,4 @@
-package io.gitgub.helioanacronista.springbootjpadeep;
+package io.gitgub.helioanacronista.localizacao;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
