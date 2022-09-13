@@ -2,6 +2,7 @@
 # spring.jpa.show_sql=true
 # spring.jpa.properties.hibernate.format_sql=true
 
+# Nota: Eles fucionam com a forma hierarquia
 spring:
   jpa:
     show-sql: true
