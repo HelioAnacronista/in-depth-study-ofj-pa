@@ -5,9 +5,9 @@ create table tb_cidade (
 );
 
 insert into tb_cidade (id_cidade, nome, qtd_habitantes) values
-(1, 'São paulo', 1000000),
-(2, 'São joão', 5999),
-(3, 'Sãolo', 66000),
-(4, 'São', 30000),
-(5, 'lolo', 2000)
+(1, 'São paulo', 10000000),
+(2, 'Salvador', 5000),
+(3, 'Petrolina', 1000),
+(4, 'Recife', 30000),
+(5, 'Fortaleza', 2000000)
 ;

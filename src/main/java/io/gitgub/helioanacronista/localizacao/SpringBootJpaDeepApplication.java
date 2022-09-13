@@ -18,8 +18,16 @@ public class SpringBootJpaDeepApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        listarCidadePorNome();
+        listarCidadePorQuantidadeHabitantes();
 
+    }
+
+    void listarCidadePorQuantidadeHabitantes() {
+        cidadesReposity.findByHabitantesLessThan(6001L).forEach(System.out::println);
+        cidadesReposity.findByHabitantesGreaterThan(50001L).forEach(System.out::println);
+        cidadesReposity.findByHabitantesLessThanEqual(2000L).forEach(System.out::println);
+
+        cidadesReposity.findByHabitantesLessThanAndNomeLike(6001L, "P%").forEach(System.out::println);
     }
 
     void listarCidadePorNome() {

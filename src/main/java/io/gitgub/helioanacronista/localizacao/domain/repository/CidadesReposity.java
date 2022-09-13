@@ -25,5 +25,19 @@ public interface CidadesReposity extends JpaRepository<Cidade, Long> {
     // busca pelo nome contendo por aquele pedaço
     List<Cidade> findByNomeContaining(String nome);
 
+    //Métodos de buscar por numero(quantidade)
+
     List<Cidade> findByHabitantes (Long qtsHabitantes);
+
+    // Menor que < ( O valor passado na assinatura do método )
+    List<Cidade> findByHabitantesLessThan (Long qtsHabitantes);
+
+    // Maior que >
+    List<Cidade> findByHabitantesGreaterThan (Long qtsHabitantes);
+
+    //Menor ou igaul <=
+    List<Cidade> findByHabitantesLessThanEqual (Long qtsHabitantes);
+
+    // Menor e nome <
+    List<Cidade> findByHabitantesLessThanAndNomeLike (Long qtsHabitantes, String nome);
 }
