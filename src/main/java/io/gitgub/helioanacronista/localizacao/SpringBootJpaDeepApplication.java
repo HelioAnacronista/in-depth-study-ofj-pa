@@ -27,6 +27,8 @@ public class SpringBootJpaDeepApplication implements CommandLineRunner {
         cidadesReposity.findByNomeStartingWith("São").forEach(System.out::println);
         cidadesReposity.findByNomeEndingWith("lo").forEach(System.out::println);
         cidadesReposity.findByNomeContaining("u").forEach(System.out::println);
+
+        cidadesReposity.findByNomeLike("%oLo%").forEach(System.out::println);
     }
 
     void listarCidadePorHabitantes() {
