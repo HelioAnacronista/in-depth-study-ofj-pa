@@ -15,15 +15,27 @@ public class SpringBootJpaDeepApplication implements CommandLineRunner {
     @Autowired
     private CidadesReposity cidadesReposity;
 
-
     @Override
     public void run(String... args) throws Exception {
-        listarCidades();
+
+        listarCidadePorNome();
+
+    }
+
+    void listarCidadePorNome() {
+        cidadesReposity.findByNome("São").forEach(System.out::println);
+        cidadesReposity.findByNomeStartingWith("São").forEach(System.out::println);
+        cidadesReposity.findByNomeEndingWith("lo").forEach(System.out::println);
+        cidadesReposity.findByNomeContaining("u").forEach(System.out::println);
+    }
+
+    void listarCidadePorHabitantes() {
+        cidadesReposity.findByHabitantes(2000L).forEach(System.out::println);
     }
 
     void listarCidades(){
         cidadesReposity.findAll().forEach(System.out::println);
-    }
+   }
 
 
     public static void main(String[] args) {
