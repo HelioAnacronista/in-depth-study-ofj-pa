@@ -18,16 +18,8 @@ public class SpringBootJpaDeepApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        salvarCidade();
         listarCidades();
     }
-
-    @Transactional
-    void salvarCidade() {
-        var cidade = new Cidade(1L, "Petrolina", 343865L );
-        cidadesReposity.save(cidade);
-    }
-
 
     void listarCidades(){
         cidadesReposity.findAll().forEach(System.out::println);
