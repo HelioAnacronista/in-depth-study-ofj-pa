@@ -3,13 +3,14 @@ package io.gitgub.helioanacronista.localizacao.service;
 import io.gitgub.helioanacronista.localizacao.domain.entity.Cidade;
 import io.gitgub.helioanacronista.localizacao.domain.repository.CidadesReposity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.crypto.ExemptionMechanism;
 import javax.naming.ldap.PagedResultsControl;
+import java.lang.reflect.Executable;
+import java.util.List;
 
 @Service
 public class CidadeService {
@@ -52,5 +53,16 @@ public class CidadeService {
     public void salvarCidade() {
         var cidade = new Cidade(1L, "Porto seguro", 2500L);
         cidadesReposity.save(cidade);
+    }
+
+    public List<Cidade> filtroDinamico(Cidade cidade) {
+        ExampleMatcher matcher = ExampleMatcher
+                .matching()
+                .withIgnoreCase()
+                .withStringMatcher(ExampleMatcher.StringMatcher.STARTING);
+
+        Example<Cidade> example = Example.of(cidade, matcher);
+
+        return cidadesReposity.findAll(example);
     }
 }
