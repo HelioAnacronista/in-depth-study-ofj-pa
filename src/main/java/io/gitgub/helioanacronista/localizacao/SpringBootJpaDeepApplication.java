@@ -18,7 +18,7 @@ public class SpringBootJpaDeepApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        cidadeService.listarCidadePorQuantidadeHabitantes();
+        cidadeService.listarCidadePorNome();
     }
 
     public static void main(String[] args) {

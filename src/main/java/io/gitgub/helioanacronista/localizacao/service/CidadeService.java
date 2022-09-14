@@ -3,8 +3,13 @@ package io.gitgub.helioanacronista.localizacao.service;
 import io.gitgub.helioanacronista.localizacao.domain.entity.Cidade;
 import io.gitgub.helioanacronista.localizacao.domain.repository.CidadesReposity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.naming.ldap.PagedResultsControl;
 
 @Service
 public class CidadeService {
@@ -29,7 +34,10 @@ public class CidadeService {
         cidadesReposity.findByNomeEndingWith("lo").forEach(System.out::println);
         cidadesReposity.findByNomeContaining("u").forEach(System.out::println);
 
-        cidadesReposity.findByNomeLike("%oLo%").forEach(System.out::println);
+        cidadesReposity.findByNomeLike("S%", Sort.by("habitantes")).forEach(System.out::println);
+
+        Pageable pageable = PageRequest.of(1, 2);
+        cidadesReposity.findByNomeLike("S%", pageable).forEach(System.out::println);
     }
 
     public void listarCidadePorHabitantes() {
