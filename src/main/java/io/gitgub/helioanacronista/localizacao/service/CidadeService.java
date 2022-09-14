@@ -94,6 +94,11 @@ public class CidadeService {
         cidadesReposity.findAll(specs).forEach(System.out::println);
     }
 
-
+    public void listarCidadePorNomeSQL(){
+        cidadesReposity
+                .findByNomeSqlNativo("Salvador")
+                .stream().map(cidade -> new Cidade(cidade.getId(), cidade.getNome(), 0L))
+                .forEach(System.out::println);
+    }
 
 }

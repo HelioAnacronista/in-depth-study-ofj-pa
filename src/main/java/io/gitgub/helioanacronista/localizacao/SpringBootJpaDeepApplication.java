@@ -23,7 +23,9 @@ public class SpringBootJpaDeepApplication implements CommandLineRunner {
 
         //cidadeService.listarCidadeByNomeSpec();
 
-        cidadeService.listaCidadeSpecsFiltroDinamico(cidade);
+        //cidadeService.listaCidadeSpecsFiltroDinamico(cidade);
+
+        cidadeService.listarCidadePorNomeSQL();
     }
 
     public static void main(String[] args) {
