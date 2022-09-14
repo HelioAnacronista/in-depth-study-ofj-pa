@@ -20,6 +20,8 @@ public class SpringBootJpaDeepApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
         var cidade = new Cidade(null, "Cidade teste", null);
         cidadeService.filtroDinamico(cidade).forEach(System.out::println);
+
+        cidadeService.listarCidadeByNomeSpec();
     }
 
     public static void main(String[] args) {

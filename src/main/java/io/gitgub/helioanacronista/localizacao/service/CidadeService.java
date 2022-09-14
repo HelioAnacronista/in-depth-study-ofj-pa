@@ -2,8 +2,10 @@ package io.gitgub.helioanacronista.localizacao.service;
 
 import io.gitgub.helioanacronista.localizacao.domain.entity.Cidade;
 import io.gitgub.helioanacronista.localizacao.domain.repository.CidadesReposity;
+import io.gitgub.helioanacronista.localizacao.domain.repository.specs.CidadeSpecs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -64,5 +66,10 @@ public class CidadeService {
         Example<Cidade> example = Example.of(cidade, matcher);
 
         return cidadesReposity.findAll(example);
+    }
+
+    public void listarCidadeByNomeSpec() {
+        Specification<Cidade> spec = CidadeSpecs.nomeEqual("Salvador").and(CidadeSpecs.habitantesGreaterThan(1000));
+        cidadesReposity.findAll(spec).forEach(System.out::println);
     }
 }
