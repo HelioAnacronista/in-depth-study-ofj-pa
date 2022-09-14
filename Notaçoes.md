@@ -1,0 +1,1 @@
+Fazer uma entidade estado para praticar o specs e queys

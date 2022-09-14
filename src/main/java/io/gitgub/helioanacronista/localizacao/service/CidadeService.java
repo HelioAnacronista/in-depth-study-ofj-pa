@@ -8,11 +8,14 @@ import org.springframework.data.domain.*;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import javax.crypto.ExemptionMechanism;
 import javax.naming.ldap.PagedResultsControl;
 import java.lang.reflect.Executable;
 import java.util.List;
+
+import static io.gitgub.helioanacronista.localizacao.domain.repository.specs.CidadeSpecs.*;
 
 @Service
 public class CidadeService {
@@ -69,7 +72,28 @@ public class CidadeService {
     }
 
     public void listarCidadeByNomeSpec() {
-        Specification<Cidade> spec = CidadeSpecs.nomeEqual("Salvador").and(CidadeSpecs.habitantesGreaterThan(1000));
+        Specification<Cidade> spec = CidadeSpecs.nomeEqual("Salvador").and(CidadeSpecs.habitantesGreaterThan(1000L));
         cidadesReposity.findAll(spec).forEach(System.out::println);
     }
+
+     public void listaCidadeSpecsFiltroDinamico(Cidade filtro){
+        //select * from cidade where 1 = 1
+        Specification<Cidade> specs = Specification.where((root, query, criteriaBuilder) -> criteriaBuilder.conjunction());
+        if (filtro.getId() != null) {
+            specs = specs.and(idEqual(filtro.getId()));
+        }
+
+        if (StringUtils.hasText(filtro.getNome())) {
+            specs = specs.and( nomeLike(filtro.getNome()));
+        }
+
+        if (filtro.getHabitantes() != null) {
+            specs = specs.and(habitantesGreaterThan(filtro.getHabitantes()));
+        }
+
+        cidadesReposity.findAll(specs).forEach(System.out::println);
+    }
+
+
+
 }
